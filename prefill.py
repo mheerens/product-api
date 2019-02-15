@@ -1,0 +1,1 @@
+"""This script performs the inital prefilling of mongoDB atlas from a given data scource"""
