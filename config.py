@@ -11,4 +11,4 @@ connection = f"mongodb://{mongouser}:{mongopass}@projectdata-shard-00-00-fmvv2.m
 atlasclient = pymongo.MongoClient(connection)
 db_atlas = atlasclient.apiproduct
 ###############################################################################
-db = db_atlas
+db = db_local
