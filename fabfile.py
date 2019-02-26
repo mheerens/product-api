@@ -20,8 +20,9 @@ def basics(context):
 #    c.run('sudo pip3 install --user -r display/requirements.txt') #problematic if requirements.txt was created using anaconda
     
 @task
-def modules(context):
-    c.run('sudo pip3 install flask')
+def requirements(context):
+    with c.cd('product-api'):
+        c.run('sudo pip3 install -r requirements.txt')
     
 @task
 def clone(context):
