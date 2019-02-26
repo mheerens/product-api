@@ -8,6 +8,7 @@ import json
 from config import db
 import datetime
 
+
 ###############################################################################
 # FUNCTIONS
 
@@ -38,7 +39,6 @@ def create_API_format(timestamp):
     startstring = f"{year}-{month}-{day}T{hour}:{minute}%2B01:00"
     return startstring
     
-
 def fetch_delta(startstring):
     '''fetches data from given start string until now from API'''
     start = startstring#f"2019-02-24T03:00%2B01:00"
@@ -62,7 +62,8 @@ def upload_delta(df_delta):
                              "timestamp" : timestamps[i],
                              "value" : values[i]
                              })
-    print(f"{len(timestamps)} entries uploaded")
+    message = f"{len(timestamps)} entries uploaded"
+    return message
     
 ###############################################################################
 # MAIN FUNCTION
@@ -73,4 +74,6 @@ def main():
     last_timestamp_plus = add_15_minutes(last_timestamp)
     startstring = create_API_format(last_timestamp_plus)
     df_delta = fetch_delta(startstring)
-    upload_delta(df_delta)
+    message = upload_delta(df_delta)
+    return message
+    

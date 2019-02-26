@@ -18,7 +18,7 @@ def get_initial_data():
     response = requests.get("https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/HAMBURG-ST.PAULI/W/measurements.json?start=2019-02-01T00:00%2B01:00&end=2019-02-25T16:00%2B01:00")
     json_data = json.loads(response.text)
     df = pd.DataFrame(json_data)
-    df.index = pd.to_datetime(df.index, unit='s')
+#    df.index = pd.to_datetime(df.index, unit='s')
     df['timestamp'] = df['timestamp'].astype('datetime64[s]') + pd.DateOffset(hours=1)
     df.index = pd.to_datetime(df['timestamp'], unit='s')
     # downsample data

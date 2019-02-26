@@ -26,3 +26,4 @@ def test_number_of_entries():
     entries_theoretical = timedelta / datetime.timedelta(minutes=15) + 1
     entries_in_mongo = db.pegeldata.count()
     assert entries_theoretical == entries_in_mongo
+    return "TEST PASSED"

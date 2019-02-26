@@ -1,3 +1,6 @@
+# TO DO / NEXT STEPS
+- flask api for controlling everything
+- chronjob that triggers fetching
 # Data Science Product API
 This project is to demonstrate a working data science product using methods such as
 modularization, data gathering through apis, continuous inprovement of ML model, publishing
@@ -19,6 +22,8 @@ Creates a nice visualization of the training data as well as predicted values
 as html document (plot.ly)
 ## server.py
 Flask server file
+## test.py
+Test scripts for database, API connection
 ## config.py
 Main settings for the project, such as server connections, prediction horizon etc.
 ## fabric.py
