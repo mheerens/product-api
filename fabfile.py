@@ -14,19 +14,24 @@ c = Connection(
 #CMD = '/home/ec2-user/product-api/hello.py'
 
 @task
-def initial_setup(context):
+def basics(context):
     c.run('sudo yum -y install python3')
     c.run('sudo yum -y install git')
-    c.run('git clone https://github.com/mheerens/product-api.git')
-    c.run('sudo pip3 install flask')
 #    c.run('sudo pip3 install --user -r display/requirements.txt') #problematic if requirements.txt was created using anaconda
     
+@task
+def modules(context):
+    c.run('sudo pip3 install flask')
+    
+@task
+def clone(context):
+    c.run('git clone https://github.com/mheerens/product-api.git')
+
 @task
 def pull(context):
     with c.cd('product-api'):
         c.run("pwd")
         c.run('git pull')
-
 @task
 def run(context):
     with c.cd('product-api'):
