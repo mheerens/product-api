@@ -1,12 +1,9 @@
 """this script contains all the chronjobs that call certain URLS on the API that
 trigger actions"""
+# export VISUAL=nano; crontab -e
+# 6,21,36,51 * * * * python3 /home/ec2-user/api-product/chrons.py -do fetch
+# check errors in var/mail/ec2-user
 
-# fetch - every 15 minutes
-# test - once per day
-# train - once per day
-# predict - once per day
-# make new chart - every 15 minutes
-# show chart
 import requests
 import argparse
 

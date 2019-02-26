@@ -1,5 +1,6 @@
 """
-FLASK_APP=api.py flask run
+This file contains the main API server using flask.
+# start via: FLASK_APP=api.py flask run
 """
 from flask import Flask, request#, send_from_directory
 from fetch import main as fetch_main
@@ -24,14 +25,25 @@ from credentials import shutdownpw
 
 app = Flask(__name__)
 
+###############################################################################
+# SHUTDOWN FUNCTION - NO NEED TO KILL PROCESSES ON AWS WHEN USING THIS
+
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
+    
+@app.route('/api/control/shutdown/<PASSWORD>')
+def shutdown(PASSWORD):
+    if PASSWORD == shutdownpw:
+        shutdown_server()
+        return 'Server shutting down...'
+    else:
+        return 'Wrong password...'
 
 ###############################################################################
-# API
+# API FUNCTIONS
 
 @app.route("/api/control/fetch")
 def trigger_fetching():
@@ -44,14 +56,6 @@ def trigger_testing():
     '''triggers testing functions'''
     message = test_number_of_entries()
     return message
-
-@app.route('/api/control/shutdown/<PASSWORD>')
-def shutdown(PASSWORD):
-    if PASSWORD == shutdownpw:
-        shutdown_server()
-        return 'Server shutting down...'
-    else:
-        return 'Wrong password...'
 
 @app.route("/api/getdata/<FROMDATE>/<TODATE>")
 def return_data(FROMDATE, TODATE):
