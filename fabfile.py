@@ -1,9 +1,10 @@
-"""file has to be names fabfile, functions are accessed from console
+"""REMOTE SERVER CONTROLS
+file has to be named fabfile, functions are accessed from console
 using "fab <functionname>" """
-""" credentials.py has to be sent to server manually - not on github"""
 
 from fabric import task
 from fabric import Connection
+#from fabric.connection import put
 
 c = Connection(
         user='ec2-user',
@@ -15,24 +16,33 @@ c = Connection(
 
 @task
 def basics(context):
+    '''installs basic python and git on server'''
     c.run('sudo yum -y install python3')
     c.run('sudo yum -y install git')
 #    c.run('sudo pip3 install --user -r display/requirements.txt') #problematic if requirements.txt was created using anaconda
     
 @task
 def requirements(context):
+    '''installs python modules from requirements.txt'''
     with c.cd('product-api'):
         c.run('sudo pip3 install -r requirements.txt')
     
 @task
 def clone(context):
     c.run('git clone https://github.com/mheerens/product-api.git')
+    
+@task
+def credentials(context):
+    '''sends credentials.py to server'''
+    c.put("credentials.py")
+    c.run('mv credentials.py product-api/credentials.py')
 
 @task
 def pull(context):
     with c.cd('product-api'):
         c.run("pwd")
         c.run('git pull')
+        
 @task
 def run(context):
     with c.cd('product-api'):

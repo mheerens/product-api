@@ -1,12 +1,13 @@
 """
 FLASK_APP=api.py flask run
 """
-from flask import Flask#, request, send_from_directory
+from flask import Flask, request#, send_from_directory
 from fetch import main as fetch_main
 from config import db
 from bson.json_util import dumps
 from datetime import datetime
 from test import test_number_of_entries
+from credentials import shutdownpw
 
 
 # flask api used as control interface for program
@@ -22,6 +23,13 @@ from test import test_number_of_entries
 # INITIALIZING FLASK
 
 app = Flask(__name__)
+
+def shutdown_server():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+
 ###############################################################################
 # API
 
@@ -36,6 +44,14 @@ def trigger_testing():
     '''triggers testing functions'''
     message = test_number_of_entries()
     return message
+
+@app.route('/api/control/shutdown/<PASSWORD>')
+def shutdown(PASSWORD):
+    if PASSWORD == shutdownpw:
+        shutdown_server()
+        return 'Server shutting down...'
+    else:
+        return 'Wrong password...'
 
 @app.route("/api/getdata/<FROMDATE>/<TODATE>")
 def return_data(FROMDATE, TODATE):
@@ -57,3 +73,5 @@ def return_data(FROMDATE, TODATE):
     end = datetime(ey, em, ed, ehr, emin) 
     dump = dumps(db.pegeldata.find({"timestamp" : {"$gte": start, "$lt": end} }))
     return dump
+
+

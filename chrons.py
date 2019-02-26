@@ -15,7 +15,7 @@ import argparse
 
 def main(action):
     if action == "fetch":
-        response = requests.get("http://127.0.0.1:5000/api/control/fetch")
+        response = requests.get("http://0.0.0.0:8080/api/control/fetch")
         print(response)             
     else:
         return print("type -do, and then 'fetch', 'XX' as parameter")
