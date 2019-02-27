@@ -2,6 +2,7 @@
 trigger actions"""
 # export VISUAL=nano; crontab -e
 # 6,21,36,51 * * * * python3 /home/ec2-user/product-api/chrons.py -do fetch
+# 0 3 * * * python3 /home/ec2-user/product-api/chrons.py -do predict
 # check errors in var/mail/ec2-user
 
 import requests
