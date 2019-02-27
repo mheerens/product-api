@@ -4,7 +4,7 @@ This file contains the main API server using flask.
 """
 from flask import Flask, request#, send_from_directory
 from fetch import main as fetch_main
-#from predict import main as predict_main #TEMPORARILY DISABLED DUE TO MEMORY RESTRICTIONS ON AWS
+from predict_ARIMA import main as predict_main #TEMPORARILY DISABLED DUE TO MEMORY RESTRICTIONS ON AWS
 from config import db
 from bson.json_util import dumps
 from datetime import datetime
@@ -42,15 +42,13 @@ def trigger_fetching():
     message = fetch_main()
     return message
 
-""" TEMPORARILY DISABLED DUE TO MEMORY RESTRICTIONS ON AWS
 @app.route("/api/control/predict")
 def trigger_prediction():
     '''triggers the training and prediction process'''
     message = predict_main()
     return message
-"""
-@app.route("/api/control/test")
 
+@app.route("/api/control/test")
 def trigger_testing():
     '''triggers testing functions'''
     message = test_number_of_entries()
@@ -77,7 +75,7 @@ def return_actual_data(FROMDATE, TODATE):
     dump = dumps(db.pegeldata.find({"timestamp" : {"$gte": start, "$lt": end} }))
     return dump
 
-""" TEMPORARILY DISABLED DUE TO MEMORY RESTRICTIONS ON AWS
+
 @app.route("/api/getdata/predicted/<FROMDATE>/<TODATE>")
 def return_predicted_data(FROMDATE, TODATE):
     '''returns predicted data from mongoDB in the given timeframe for use in other applications.
@@ -98,4 +96,4 @@ def return_predicted_data(FROMDATE, TODATE):
     end = datetime(ey, em, ed, ehr, emin) 
     dump = dumps(db.pegelpredictions.find({"timestamp" : {"$gte": start, "$lt": end} }))
     return dump
-"""
+

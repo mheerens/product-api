@@ -9,7 +9,7 @@ from fabric import Connection
 # DEFINE CONNECTION TO AWS
 c = Connection(
         user='ec2-user',
-        host='ec2-3-122-252-53.eu-central-1.compute.amazonaws.com',
+        host='ec2-18-197-132-108.eu-central-1.compute.amazonaws.com',
         connect_kwargs={'key_filename': '../../sshmatt3000.pem'}
     )
 
