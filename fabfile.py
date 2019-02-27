@@ -9,7 +9,7 @@ from fabric import Connection
 # DEFINE CONNECTION TO AWS
 c = Connection(
         user='ec2-user',
-        host='ec2-54-93-234-189.eu-central-1.compute.amazonaws.com',
+        host='ec2-3-122-252-53.eu-central-1.compute.amazonaws.com',
         connect_kwargs={'key_filename': '../../sshmatt3000.pem'}
     )
 
@@ -19,8 +19,11 @@ c = Connection(
 @task
 def basics(context):
     '''installs basic python and git on server'''
-#    c.run('sudo yum -y install python3')
-    c.run('sudo yum -y install python3-devel')
+#    c.run('wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh')
+#    c.run('bash Miniconda3-latest-Linux-x86_64.sh')
+#    c.run('source .bashrc')
+    c.run('sudo yum -y install python3')
+#    c.run('sudo yum -y install python3-devel')
 #    c.run('sudo yum install gcc gcc-c++')
     c.run('sudo yum -y install git')
 

@@ -2,5 +2,5 @@ Flask==1.0.2
 pymongo==3.7.2
 requests==2.20.0
 pandas==0.23.4
-pyramid-arima
+pmdarima==1.1.0
 
