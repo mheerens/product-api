@@ -38,6 +38,13 @@ def create_API_format(timestamp):
     minute = timestamp.minute
     startstring = f"{year}-{month}-{day}T{hour}:{minute}%2B01:00"
     return startstring
+
+def delete_old_data(days_back):
+    ''' to keep db lean'''
+    current_date = datetime.datetime.now()
+    last_relevant_date = current_date - datetime.timedelta(days=days_back)    
+    db.pegeldata.delete_many({"timestamp" : {"$lt": last_relevant_date} })
+    
     
 def fetch_delta(startstring):
     '''fetches data from given start string until now from API'''
@@ -74,6 +81,7 @@ def main():
     last_timestamp_plus = add_15_minutes(last_timestamp)
     startstring = create_API_format(last_timestamp_plus)
     df_delta = fetch_delta(startstring)
+    delete_old_data(90)
     message = upload_delta(df_delta)
     return message
     

@@ -9,7 +9,7 @@ from fabric import Connection
 # DEFINE CONNECTION TO AWS
 c = Connection(
         user='ec2-user',
-        host='ec2-18-184-212-150.eu-central-1.compute.amazonaws.com',
+        host='ec2-54-93-234-189.eu-central-1.compute.amazonaws.com',
         connect_kwargs={'key_filename': '../../sshmatt3000.pem'}
     )
 
@@ -19,9 +19,9 @@ c = Connection(
 @task
 def basics(context):
     '''installs basic python and git on server'''
-    c.run('sudo yum -y install python3')
-    #c.run('sudo yum -y install python3-devel')
-    #c.run('sudo yum install gcc gcc-c++')
+#    c.run('sudo yum -y install python3')
+    c.run('sudo yum -y install python3-devel')
+#    c.run('sudo yum install gcc gcc-c++')
     c.run('sudo yum -y install git')
 
 @task
