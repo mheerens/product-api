@@ -57,7 +57,7 @@ def upload_predictions_to_mongodb(predictions):
                              "timestamp" : timestamps[i],
                              "value" : values[i]
                              })
-    message = f"{len(timestamps)} entries uploaded"
+    message = f"{len(timestamps)} predictions uploaded"
     return message
 
 def delete_old_predictions():

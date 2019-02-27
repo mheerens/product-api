@@ -13,9 +13,12 @@ import argparse
 def main(action):
     if action == "fetch":
         response = requests.get("http://0.0.0.0:8080/api/control/fetch")
-        print(response)             
+        print(response)
+    elif action == "predict":     
+        response = requests.get("http://0.0.0.0:8080/api/control/predict")
+        print(response)        
     else:
-        return print("type -do, and then 'fetch', 'XX' as parameter")
+        return print("type -do, and then 'fetch', or 'predict', 'XX' as parameter")
                           
 ###############################################################################
 # ARGPARSE FOR CHRONJOBS
