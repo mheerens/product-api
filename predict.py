@@ -1,9 +1,5 @@
-# load data from mongodb (last 360 days)
-# make dataframe in prophet style
-# train prophet
-# make future df 7 days
-# make predictions on it
-# upload predictions into collection "predictions"
+"""this script loads data from mongoDB, takes it as input to train Prophet,
+then makes predictions and uploads them back into mongoDB"""
 
 import pandas as pd
 from fbprophet import Prophet
@@ -21,8 +17,8 @@ def get_data_from_mongodb(days_back):
     return data
 
 def make_prophet_dataframe(data):
-    '''PREPROCESSING: Takes data from mongoDB and turns it into a dataframe that prophet
-    can read'''
+    '''PREPROCESSING: Takes data from mongoDB and turns it into a dataframe 
+    that prophet can read'''
     timestamps = []
     water_levels = []
     for i,_ in enumerate(data):
@@ -64,7 +60,7 @@ def upload_predictions_to_mongodb(predictions):
     message = f"{len(timestamps)} entries uploaded"
     return message
 
-def delete_data():
+def delete_old_predictions():
     '''CAREFUL: deletes all entries in collection'''
     db.pegelpredictions.delete_many({})
     
@@ -72,10 +68,12 @@ def delete_data():
 # MAIN FUNCTION
 
 def main():
+    '''combining functions'''
     data = get_data_from_mongodb(365)
     df = make_prophet_dataframe(data)
     m = train_prophet(df)
     future_df = make_future_df(m, 7)
     predictions = make_predictions(m, future_df)
+    delete_old_predictions() # to avoid data overflow / keeping db clean
     message = upload_predictions_to_mongodb(predictions)
     return message
