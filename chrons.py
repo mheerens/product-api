@@ -14,7 +14,7 @@ def main(action):
     if action == "fetch":
         response = requests.get("http://0.0.0.0:8080/api/control/fetch")
         print(response)
-    elif action == "predict":     
+    elif action == "predict":
         response = requests.get("http://0.0.0.0:8080/api/control/predict")
         print(response)        
     else:

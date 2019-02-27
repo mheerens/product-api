@@ -1,8 +1,9 @@
 """this script loads data from mongoDB, takes it as input to train Prophet,
 then makes predictions and uploads them back into mongoDB"""
 
+"""TEMPORARILY DISABLED DUE TO MEMORY RESTRICTIONS ON AWS
 import pandas as pd
-from fbprophet import Prophet
+from fbprophet import Prophet 
 from config import db
 from datetime import datetime, timedelta
 
@@ -77,3 +78,5 @@ def main():
     delete_old_predictions() # to avoid data overflow / keeping db clean
     message = upload_predictions_to_mongodb(predictions)
     return message
+    
+"""

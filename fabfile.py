@@ -20,6 +20,8 @@ c = Connection(
 def basics(context):
     '''installs basic python and git on server'''
     c.run('sudo yum -y install python3')
+    #c.run('sudo yum -y install python3-devel')
+    #c.run('sudo yum install gcc gcc-c++')
     c.run('sudo yum -y install git')
 
 @task
