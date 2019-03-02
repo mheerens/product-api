@@ -13,8 +13,10 @@ import requests
 import json
 import datetime
 
-#API_ADDRESS = "http://0.0.0.0:8080"
-API_ADDRESS = "http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com:8080"
+API_ADDRESS = "http://0.0.0.0:8080"
+HTML_DIR = "/home/ec2-user/product-api/templates/show.html"
+#API_ADDRESS = "http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com:8080"
+#HTML_DIR = "templates/show.html"
 
 ###############################################################################
 # FUNCTIONS
@@ -85,17 +87,17 @@ def make_chart(df_actuals, df_predictions, fromdate, todate):
     
     fig = dict(data=data, layout=layout)
     
-    py.offline.plot(fig, filename='/home/ec2-user/product-api/templates/show.html', auto_open=False)
+    py.offline.plot(fig, filename=HTML_DIR, auto_open=True)
     
 ###############################################################################
 # MAIN FUNCTION
     
 def main():
-    fromdate, todate = get_dates(days_back=14, days_future=7)
+    fromdate, todate = get_dates(days_back=14, days_future=2)
     df_actuals = get_data_from_API("pegeldata", fromdate, todate)
     df_predictions = get_data_from_API("pegelpredictions", fromdate, todate) 
     
-    fromdate_chart, todate_chart = get_dates(days_back=14, days_future=7)
+    fromdate_chart, todate_chart = get_dates(days_back=14, days_future=2)
     make_chart(df_actuals, df_predictions, fromdate_chart, todate_chart)
     
 ############################################################################### 

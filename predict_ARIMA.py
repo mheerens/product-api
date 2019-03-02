@@ -28,11 +28,20 @@ def preprocess_data(data):
 
 def train_ARIMA(df):
     '''Train model'''
-    m = auto_arima(df, trace=True, error_action='ignore', suppress_warnings=True)
+#    m1 = auto_arima(df, start_p=0, max_p=0, d=1, start_q=1, max_q=1, m=12, #12.5 hrs * 4 15mns 
+#                   seasonal=True, start_P=1, max_P=1, D=1, Q=1 ,trace=True, 
+#                   error_action='ignore', suppress_warnings=True)
+    m = auto_arima(df, trace=True, seasonal=False, maxiter = 10,
+                   #start_p=0, max_p=0,
+                   #start_q=0, max_q=0,
+                   #d=None,
+                   error_action='ignore', suppress_warnings=True)
     m.fit(df)
     return m
 
+
 def make_forecast_df(m, days, data):
+    '''makes dataframe with future values for forecasting'''
     prediction_periods = days*24*4
     last_actual_timestamp = data[len(data)-1]["timestamp"]
     first_prediction_timestamp = last_actual_timestamp + timedelta(minutes=15)
@@ -70,7 +79,7 @@ def main():
     data = get_data_from_mongodb(90)
     df = preprocess_data(data)
     m = train_ARIMA(df)
-    forecast_df = make_forecast_df(m, 7, data)
+    forecast_df = make_forecast_df(m, 2, data)
     delete_old_predictions() # to avoid data overflow / keeping db clean
     message = upload_predictions_to_mongodb(forecast_df)
     return message
