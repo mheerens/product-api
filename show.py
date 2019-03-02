@@ -69,7 +69,7 @@ def make_chart(df_actuals, df_predictions, fromdate, todate):
                     x=df_predictions['timestamps'],
                     y=df_predictions['values'],
                     name = "predictions",
-                    line = dict(color = '#F58A18'),
+                    line = dict(color = '#D50737'),
                     opacity = 0.8)
     
     data = [trace_high,trace_low]
