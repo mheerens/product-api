@@ -85,7 +85,7 @@ def make_chart(df_actuals, df_predictions, fromdate, todate):
     
     fig = dict(data=data, layout=layout)
     
-    py.offline.plot(fig, filename='home/ec2-user/product-api/templates/show.html', auto_open=False)
+    py.offline.plot(fig, filename='/home/ec2-user/product-api/templates/show.html', auto_open=False)
     
 ###############################################################################
 # MAIN FUNCTION
