@@ -2,7 +2,7 @@
 This file contains the main API server using flask.
 # start via: FLASK_APP=api.py flask run
 """
-from flask import Flask, request#, send_from_directory
+from flask import Flask, request, render_template#, send_from_directory
 from fetch import main as fetch_main
 from predict_ARIMA import main as predict_main #TEMPORARILY DISABLED DUE TO MEMORY RESTRICTIONS ON AWS
 from config import db
@@ -97,3 +97,9 @@ def return_predicted_data(FROMDATE, TODATE):
     dump = dumps(db.pegelpredictions.find({"timestamp" : {"$gte": start, "$lt": end} }))
     return dump
 
+###############################################################################
+# SHOWS THE DASHBOARD
+    
+@app.route('/show')
+def show():
+    return render_template('show.html')

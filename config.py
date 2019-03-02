@@ -13,6 +13,3 @@ db_atlas = atlasclient.apiproduct
 ###############################################################################
 # LOCAL / ATLAS SWITCH
 db = db_atlas
-###############################################################################
-# AWS Server
-HTTP_AWS = "ec2-18-197-132-108.eu-central-1.compute.amazonaws.com"

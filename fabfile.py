@@ -4,13 +4,14 @@ using "fab <functionname>" """
 
 from fabric import task
 from fabric import Connection
+from config import AWS
 
 ###############################################################################
 # DEFINE CONNECTION TO AWS
 c = Connection(
-        user='ec2-user',
-        host='ec2-18-197-132-108.eu-central-1.compute.amazonaws.com',
-        connect_kwargs={'key_filename': '../../sshmatt3000.pem'}
+        user = 'ec2-user',
+        host = AWS,
+        connect_kwargs = {'key_filename': '../../sshmatt3000.pem'}
     )
 
 ###############################################################################

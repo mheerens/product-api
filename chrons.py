@@ -8,15 +8,19 @@ trigger actions"""
 import requests
 import argparse
 
+
+API_ADRESS = "http://0.0.0.0:8080"
+#API_ADDRESS = "http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com"
+
 ###############################################################################
 # MAIN FUNCTION
 
 def main(action):
     if action == "fetch":
-        response = requests.get("http://0.0.0.0:8080/api/control/fetch")
+        response = requests.get(f"{API_ADRESS}/api/control/fetch")
         print(response)
     elif action == "predict":
-        response = requests.get("http://0.0.0.0:8080/api/control/predict")
+        response = requests.get(f"{API_ADRESS}/api/control/predict")
         print(response)        
     else:
         return print("type -do, and then 'fetch', or 'predict', 'XX' as parameter")
