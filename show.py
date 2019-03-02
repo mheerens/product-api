@@ -13,8 +13,8 @@ import requests
 import json
 import datetime
 
-API_ADDRESS = "http://0.0.0.0:8080"
-#API_ADDRESS = "http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com:8080"
+#API_ADDRESS = "http://0.0.0.0:8080"
+API_ADDRESS = "http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com:8080"
 
 ###############################################################################
 # FUNCTIONS
@@ -85,7 +85,7 @@ def make_chart(df_actuals, df_predictions, fromdate, todate):
     
     fig = dict(data=data, layout=layout)
     
-    py.offline.plot(fig, filename='templates/show.html', auto_open=False)
+    py.offline.plot(fig, filename='home/ec2-user/product-api/templates/show.html', auto_open=False)
     
 ###############################################################################
 # MAIN FUNCTION
