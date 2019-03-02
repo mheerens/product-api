@@ -4,28 +4,24 @@ using "fab <functionname>" """
 
 from fabric import task
 from fabric import Connection
-from config import AWS
+
+AWS = "ec2-18-197-132-108.eu-central-1.compute.amazonaws.com"
+PEM = "../../sshmatt3000.pem"
 
 ###############################################################################
 # DEFINE CONNECTION TO AWS
 c = Connection(
         user = 'ec2-user',
         host = AWS,
-        connect_kwargs = {'key_filename': '../../sshmatt3000.pem'}
+        connect_kwargs = {'key_filename': PEM}
     )
-
 ###############################################################################
 # REMOTE FUNCTIONS
 
 @task
 def basics(context):
     '''installs basic python and git on server'''
-#    c.run('wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh')
-#    c.run('bash Miniconda3-latest-Linux-x86_64.sh')
-#    c.run('source .bashrc')
     c.run('sudo yum -y install python3')
-#    c.run('sudo yum -y install python3-devel')
-#    c.run('sudo yum install gcc gcc-c++')
     c.run('sudo yum -y install git')
 
 @task

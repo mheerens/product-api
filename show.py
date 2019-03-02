@@ -9,8 +9,8 @@ import requests
 import json
 import datetime
 
-#API_ADRESS = "http://0.0.0.0:8080"
-API_ADDRESS = "http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com:8080"
+API_ADDRESS = "http://0.0.0.0:8080"
+#API_ADDRESS = "http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com:8080"
 
 ###############################################################################
 # FUNCTIONS
