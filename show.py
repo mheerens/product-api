@@ -2,6 +2,10 @@
 a visualization of the available data
 --> Like a STAND-ALONE APPLICATION"""
 
+# chron:
+# 8,23,38,53 * * * * python3 /home/ec2-user/product-api/show.py
+
+
 import plotly as py
 import plotly.graph_objs as go
 import pandas as pd
@@ -65,7 +69,7 @@ def make_chart(df_actuals, df_predictions, fromdate, todate):
                     x=df_predictions['timestamps'],
                     y=df_predictions['values'],
                     name = "predictions",
-                    line = dict(color = '#7F7F7F'),
+                    line = dict(color = '#F58A18'),
                     opacity = 0.8)
     
     data = [trace_high,trace_low]
