@@ -15,6 +15,7 @@ from credentials import shutdownpw
 # INITIALIZING FLASK
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 ###############################################################################
 # SHUTDOWN FUNCTION - NO NEED TO KILL PROCESSES ON AWS WHEN USING THIS
