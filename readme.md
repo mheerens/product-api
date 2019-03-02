@@ -1,6 +1,8 @@
 # TO DO / NEXT STEPS
 - make lean application that gets data from api and displays actual vs. predictions
 - update documentation, simple chart with draw.io
+# Overview
+![alt text](overview.xml)
 # Data Science Product API
 This project is to demonstrate a working data science product using methods such as
 modularization, data gathering through apis, continuous inprovement of ML model, publishing
