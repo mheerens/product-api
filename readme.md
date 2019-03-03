@@ -9,8 +9,8 @@ machine learning model and...<br/>
 (B) ...making data and results available through jsons.<br/>
 As a result, any theoretical application accross all devices can make use of 
 this data science product - as long it is connected to the web!
-### Examplary application
-A simple dashboard that shows real values as well as the most recent predictions<br/>
+### Exemplary application
+A simple dashboard that shows live water levels as well as most recent predictions<br/>
 http://ec2-18-197-132-108.eu-central-1.compute.amazonaws.com:8080/show
 # Architecture
 ![alt text](overview.png)
@@ -51,5 +51,5 @@ server --> do on server<br/>
 9. server: deploy crontabs 
 ### Crontabs on server:
 6,21,36,51 * * * * python3 /home/ec2-user/product-api/chrons.py -do fetch<br/>
-0 3 * * * python3 /home/ec2-user/product-api/chrons.py -do predict<br/>
+0 5 * * * python3 /home/ec2-user/product-api/chrons.py -do predict<br/>
 8,23,38,53 * * * * python3 /home/ec2-user/product-api/show.py
