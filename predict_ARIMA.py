@@ -83,3 +83,8 @@ def main():
     delete_old_predictions() # to avoid data overflow / keeping db clean
     message = upload_predictions_to_mongodb(forecast_df)
     return message
+
+############################################################################### 
+
+if __name__ == "__main__":
+    main()
