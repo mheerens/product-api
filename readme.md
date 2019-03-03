@@ -1,13 +1,14 @@
-# API-centric Data Science Product
+# Water level prediction at Elbe river: An API-centric data science product
 This project is to demonstrate a working data science product using methods such as
-modularization, data gathering through apis, continuous inprovement of ML model, publishing
-and visualisation via minimal website/minimal api and continuous testing - all hosted
-on AWS. The main idea is to build everything around an API, and use that API for
+modularization, data gathering through apis, continuous re-training of ML model, publishing
+and visualizing via an API - all hosted on AWS. 
+## Idea
+The main idea is to build everything around an API, and use that API for
 (A) controlling/triggering main fuctions such as unpdating the database, re-training the 
 machine learning model and (B) making data and results available through jsons.
-As a result, any theoretical application can make use of this data science product,
-as long it is connected to the web!
-# Overview
+As a result, any theoretical application accross all devices can make use of 
+this data science product - as long it is connected to the web!
+# Design
 ![alt text](overview.png)
 # Used tech:
 - AWS

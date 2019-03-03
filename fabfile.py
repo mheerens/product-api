@@ -29,6 +29,7 @@ def requirements(context):
     '''installs python modules from requirements.txt'''
     with c.cd('product-api'):
         c.run('sudo pip3 install -r requirements.txt')
+        c.run('mkdir templates')
     
 @task
 def clone(context):
